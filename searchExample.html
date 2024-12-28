@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <input type="text" id="search" placeholder="Arama Yap">
+    <div id="results"></div>
+
+    <script>
+        $(document).ready(function () {
+            $('#search').keyup(function () {
+                var searchText = $(this).val().toLowerCase();
+                $('#results').html('');
+                $.getJSON('https://jsonplaceholder.typicode.com/posts', function (data) {
+                    data.forEach( function (item, index) {
+                        if (item.title.toLowerCase().indexOf(searchText) > -1) {
+                            $('#results').append("<p><b>ID:</b> " + item.id + "<br><b>Title:</b> " + item.title + "</p>");
+                        }
+                    });
+                    $.getJSON('https://jsonplaceholder.typicode.com/comments', function (data) {
+                        data.forEach(function (item, index) {
+                            if (item.body.toLowerCase().indexOf(searchText) > -1) {
+                                $('#results').append("<p><b>ID:</b> " + item.id + "<br><b>Body:</b> " + item.body + "</p>");
+                            }
+                        });
+                    })
+                });
+            });
+        });
+    </script>
+</body>
+</html>

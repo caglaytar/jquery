@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <button id="loadTable">Tabloyu Göster</button>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Başlık</th>
+                <th>Açıklama</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Veriler buraya eklenecek -->
+        </tbody>
+    </table>
+
+    <script>
+        $(document).ready(function(){
+            $("#loadTable").click(function(){
+                $.get("https://jsonplaceholder.typicode.com/posts", function(data){
+
+                    let rows = '';
+                    data.slice(0, 10).forEach(element => {
+                        rows += `  <!-- Satır ekliyoruz -->
+                        <tr>
+                            <td>${element.id}</td>
+                            <td>${element.title}</td> 
+                            <td>${element.body}</td>   
+                        </tr>
+                        `;
+                    });
+                    $("#tableBody").html(rows);
+
+                }).fail(function(){
+                    alert("Bir hata oluştu");
+                });
+            });
+        });
+    </script>
+</body>
+</html>
