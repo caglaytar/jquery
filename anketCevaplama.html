@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anket Örneği</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .survey-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-bottom: 10px;
+            display: block;
+            font-size: 18px;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="survey-container">
+        <h2>Anket Sorusu</h2>
+        <form id="surveyForm">
+            <label>
+                <input type="radio" name="question" value="Evet"> Evet
+            </label>
+            <label>
+                <input type="radio" name="question" value="Hayır"> Hayır
+            </label>
+            <br>
+            <button type="submit">Gönder</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#surveyForm').submit(function(e) {
+                e.preventDefault();
+
+                var cevap = $("input[name='question']:checked").val();
+
+                if (cevap) {
+                    $('#message').text("Cevap için teşekkürler: " + cevap);
+                    $('#surveyForm')[0].reset();
+                } else {
+                    $('#message').text("Lütfen bir cevap seçiniz ");
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

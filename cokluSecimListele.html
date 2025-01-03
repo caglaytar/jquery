@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ürün Seçme</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" 
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <h2>Meyve Seçimi</h2>
+    <select name="" id="multiSelect">
+        <option value="">Lütfen bir meyve seçin</option>
+        <option value="1">Elma</option>
+        <option value="2">Armut</option>
+        <option value="3">Kivi</option>
+        <option value="4">Muz</option>
+        <option value="5">Kırmızı Elma</option>
+        <option value="6">Kırmızı Armut</option>
+        <option value="7">Kırmızı Kivi</option>
+        <option value="8">Kırmızı Muz</option>
+    </select>
+    <button id="addItems">Listeye Ekle</button>
+    <h3>Seçilen Meyveler</h3>
+    <ul id="selectedList"></ul>
+
+    <script>
+        $(document).ready(function() {
+            $("#addItems").click(function() {
+                let selectedItems = $("#multiSelect option:selected");
+                selectedItems.each(function() {
+                    $('<li>').text($(this).text()).appendTo('#selectedList');
+                });
+                selectedItems.remove();
+            });
+        })
+    </script>
+</body>
+</html>

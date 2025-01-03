@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zıplama Animasyonu</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #3498db;
+            border-radius: 10px;
+            position: absolute;
+            bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box"></div>
+
+    <script>
+        $(document).ready(function() {
+            function bounceAnimation() {
+                $(".box").animate({
+                    bottom: "150px"
+                }, 400, function() {
+                    $(this).animate({
+                        bottom: "30px"
+                    }, 400, function() {
+                        bounceAnimation();
+                    });
+                });
+            }
+
+            bounceAnimation();
+        });
+    </script>
+
+</body>
+</html>
